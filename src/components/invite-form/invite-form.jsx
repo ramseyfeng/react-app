@@ -31,8 +31,13 @@ export default class InviteForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.setProcessingStatus(true);
         const {name, email, confirmEmail} = this;
+        if (email.value !== confirmEmail.value) {
+            this.setValidationResult(FORM_STATUS.INVALID);
+            this.setState({errorMessage: 'Confirm email is not match with email, please dobule check them!'});
+            return ;
+        }
+        this.setProcessingStatus(true);
         console.log(name.value, email.value, confirmEmail.value);
         axios.post('/prod/fake-auth', {name: name.value, email: email.value}).then(() => {
             this.setValidationResult(FORM_STATUS.VALID);
@@ -68,7 +73,7 @@ export default class InviteForm extends Component {
                                 :<div>
                                     <div className="my-3 py-2">
                                         <div className="d-flex justify-content-center">
-                                            <h3 className="modal-title content-subject">Request an invite</h3>
+                                            <h3 className="modal-title modal-subject">Request an invite</h3>
                                         </div>
                                         <hr className="w-10 border-dark" />
                                     </div>

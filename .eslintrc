@@ -17,13 +17,21 @@
       "always"
     ]
   },
+  "settings": {
+    "react": {
+      "createClass": "createReactClass", // Regex for Component Factory to use,
+      // default to "createReactClass"
+      "pragma": "React",  // Pragma to use, default to "React"
+      "version": "16.5.2"
+    },
+    "propWrapperFunctions": [ "forbidExtraProps" ] // The names of any functions used to wrap the
+    // propTypes object, e.g. `forbidExtraProps`.
+    // If this isn't set, any propTypes wrapped in
+    // a function will be skipped.
+  },
   "env": {
     "es6": true,
     "browser": true
-  },
-  "ecmaFeatures": {
-    "jsx": true,
-    "experimentalObjectRestSpread": true
   },
   "plugins": [
     "react"
@@ -37,3 +45,5 @@
     "plugin:react/recommended"
   ]
 }
+
+
