@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import './invite-form.scss';
 
 const FORM_STATUS = {
     NEW: 0,
@@ -67,7 +68,7 @@ export default class InviteForm extends Component {
                                 :<div>
                                     <div className="my-3 py-2">
                                         <div className="d-flex justify-content-center">
-                                            <h3 className="modal-title">Request an invite</h3>
+                                            <h3 className="modal-title content-subject">Request an invite</h3>
                                         </div>
                                         <hr className="w-10 border-dark" />
                                     </div>
