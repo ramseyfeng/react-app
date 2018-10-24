@@ -9,45 +9,42 @@ const FORM_STATUS = {
 
 export default class InviteForm extends Component {
 
-    constructor(props) {
+    state = {
+        formStatus: FORM_STATUS.NEW,
+        isProcessing: false,
+        errorMessage: null
+    };
 
-        super(props);
+    setProcessingStatus = (isProcessing) => {
+        this.setState({isProcessing});
+    };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleOK = this.handleOK.bind(this);
-        this.state = {
-            formStatus: FORM_STATUS.NEW,
-            isProcessing: false
-        };
+    setValidationResult = (formStatus) => {
+        this.setState({formStatus});
+        this.setProcessingStatus(false);
     }
 
-    handleOK(event) {
+    handleOK = (event) => {
         console.log(event);
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
-        this.setState({isProcessing: true});
+        this.setProcessingStatus(true);
         const {name, email, confirmEmail} = this;
         console.log(name.value, email.value, confirmEmail.value);
-        axios.post('/prod/fake-auth', {name: name.value, email: email.value}).then(response => {
-            this.setState({
-                formStatus: FORM_STATUS.VALID
-            });
-            console.log(response);
+        axios.post('/prod/fake-auth', {name: name.value, email: email.value}).then(() => {
+            this.setValidationResult(FORM_STATUS.VALID);
         }).catch((err) => {
-            this.setState({
-                formStatus: FORM_STATUS.INVALID
-            });
+            this.setValidationResult(FORM_STATUS.INVALID);
+            const {errorMessage} = err.response.data;
+            this.setState({errorMessage});
             console.log(err);
         });
-        /*axios.post('/api/load-tests?TENANTID=stormui&projectId=1', {name: 'axios'}).then(response => {
-            console.log(response);
-        });*/
     }
 
     render () {
-        const {formStatus, isProcessing} = this.state;
+        const {formStatus, isProcessing, errorMessage} = this.state;
         return (
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
@@ -55,43 +52,49 @@ export default class InviteForm extends Component {
                         {
                             formStatus === FORM_STATUS.VALID ?
                                 <div>
-                                    <div className="d-flex justify-content-center my-3 py-2">
-                                        <h3 className="modal-title">All done!</h3>
+                                    <div className="my-3 py-2">
+                                        <div className="d-flex justify-content-center">
+                                            <h3 className="modal-title">All done!</h3>
+                                        </div>
+                                        <hr className="w-10 border-dark" />
                                     </div>
-                                    <hr className="w-10 border-dark" />
-                                    <div className="mb-3">
+                                    <div className="mb-3 py-3">
                                         <h4 className="text-secondary">You will be the first to experience</h4>
                                         <h4 className="text-secondary">Broccoli & Co. when we launch</h4>
                                     </div>
                                     <button type="button" onClick={this.handleOK} className="btn btn-success btn-lg btn-block">OK</button>
                                 </div>
                                 :<div>
-                                    <div className="d-flex justify-content-center my-3 py-2">
-                                        <h3 className="modal-title">Request an invite</h3>
-                                    </div>
-                                    <hr className="w-10" />
-                                    <form onSubmit={this.handleSubmit}>
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" ref={input => this.name = input} placeholder="Full name" />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="email" className="form-control" ref={input => this.email = input} placeholder="Email" />
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="email" className="form-control" ref={input => this.confirmEmail = input} placeholder="Confirm email" />
-                                        </div>
+                                    <div className="my-3 py-2">
                                         <div className="d-flex justify-content-center">
-                                            <button type="button" onClick={this.handleSubmit} className="btn btn-primary">{isProcessing ? 'Sending, please wait...' : 'Send'}</button>
+                                            <h3 className="modal-title">Request an invite</h3>
                                         </div>
-                                        {
-                                            formStatus === FORM_STATUS.INVALID ?
-                                                <div className="alert alert-danger d-flex justify-content-center mt-3" role="alert">
-                                                    Error message from server here.
-                                                </div>
-                                                :
-                                                ''
-                                        }
-                                    </form>
+                                        <hr className="w-10 border-dark" />
+                                    </div>
+                                    <div className="mb-3 py-3">
+                                        <form onSubmit={this.handleSubmit}>
+                                            <div className="form-group">
+                                                <input type="text" className="form-control" ref={input => this.name = input} placeholder="Full name" />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="email" className="form-control" ref={input => this.email = input} placeholder="Email" />
+                                            </div>
+                                            <div className="form-group">
+                                                <input type="email" className="form-control" ref={input => this.confirmEmail = input} placeholder="Confirm email" />
+                                            </div>
+                                            <div className="d-flex justify-content-center">
+                                                <button type="button" onClick={this.handleSubmit} className="btn btn-primary">{isProcessing ? 'Sending, please wait...' : 'Send'}</button>
+                                            </div>
+                                            {
+                                                formStatus === FORM_STATUS.INVALID ?
+                                                    <div className="alert alert-danger d-flex justify-content-center mt-3" role="alert">
+                                                        {errorMessage}
+                                                    </div>
+                                                    :
+                                                    ''
+                                            }
+                                        </form>
+                                    </div>
                                 </div>
                         }
                     </div>
