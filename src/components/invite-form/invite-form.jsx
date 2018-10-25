@@ -43,7 +43,9 @@ export default class InviteForm extends Component {
             this.setValidationResult(FORM_STATUS.VALID);
         }).catch((err) => {
             this.setValidationResult(FORM_STATUS.INVALID);
-            const {errorMessage} = err.response.data;
+            let {errorMessage} = err.response.data;
+            //Sometimes the proxy cannot work properly, don't know why
+            errorMessage = errorMessage? errorMessage : err.response.data;
             this.setState({errorMessage});
             console.log(err);
         });
@@ -89,7 +91,12 @@ export default class InviteForm extends Component {
                                                 <input type="email" className="form-control" ref={input => this.confirmEmail = input} placeholder="Confirm email" />
                                             </div>
                                             <div className="d-flex justify-content-center">
-                                                <button type="button" onClick={this.handleSubmit} className="btn btn-primary">{isProcessing ? 'Sending, please wait...' : 'Send'}</button>
+                                                {
+                                                    isProcessing ?
+                                                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary" disabled>Sending, please wait...</button>
+                                                        :
+                                                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Send</button>
+                                                }
                                             </div>
                                             {
                                                 formStatus === FORM_STATUS.INVALID ?

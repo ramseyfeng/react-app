@@ -16,14 +16,14 @@ export default class App extends Component {
                     </div>
                 </div>
                 <div className="page-content d-flex text-center">
-                    <form className="form-signin">
+                    <div className="form-signin">
                         <h2 className="h2 mb-3 font-weight-normal">A better way</h2>
                         <h2 className="h2 mb-3 font-weight-normal">to enjoy every day</h2>
                         <p className="text-secondary">Be the first to know when we launch.</p>
                         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#invitationModal">
                             Request an invite
                         </button>
-                    </form>
+                    </div>
                 </div>
                 <div className="modal fade" id="invitationModal">
                     <InviteForm/>
