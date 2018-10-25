@@ -9,5 +9,7 @@ It is for people to "Request an invitation" on their website
 - How to run it
   - execute cmd "git clone https://github.com/ramseyfeng/react-app"
   - run commands below under project directory:
-  --  "npm install"
-  --  "npm start"
+    - npm install
+    - npm start
+
+
