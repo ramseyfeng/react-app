@@ -30,8 +30,8 @@ export default class App extends Component {
                 </div>
                 <div className="page-footer bg-secondary">
                     <div className="container-fluid p-3 text-center">
-                        <p>Made with svg in Melboune</p>
-                        <p>2016 Broccoli &amp; Co. All rights reserved.</p>
+                        <p>Made with &#9829; in Melboune</p>
+                        <p>&#169; 2016 Broccoli &amp; Co. All rights reserved.</p>
                     </div>
                 </div>
             </div>
