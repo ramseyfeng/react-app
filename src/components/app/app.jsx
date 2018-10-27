@@ -15,8 +15,8 @@ export default class App extends Component {
                         <div className="navbar-brand px-lg-5 px-md-3">BROCOLI CO</div>
                     </div>
                 </div>
-                <div className="page-content d-flex text-center">
-                    <div className="center-section">
+                <div className="page-content content-xy-center text-center py-3">
+                    <div>
                         <h2 className="h2 mb-3 font-weight-normal">A better way</h2>
                         <h2 className="h2 mb-3 font-weight-normal">to enjoy every day</h2>
                         <p className="text-secondary">Be the first to know when we launch.</p>
