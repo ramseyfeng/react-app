@@ -15,12 +15,12 @@ export default class App extends Component {
                         <div className="navbar-brand px-lg-5 px-md-3">BROCOLI CO</div>
                     </div>
                 </div>
-                <div className="page-content content-xy-center text-center py-3">
-                    <div>
+                <div className="page-content text-center py-3 d-flex">
+                    <div className="content-xy-center">
                         <h2 className="h2 mb-3 font-weight-normal">A better way</h2>
                         <h2 className="h2 mb-3 font-weight-normal">to enjoy every day</h2>
                         <p className="text-secondary">Be the first to know when we launch.</p>
-                        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#invitationModal">
+                        <button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#invitationModal">
                             Request an invite
                         </button>
                     </div>

@@ -24,9 +24,9 @@ export default class InviteForm extends Component {
         this.setProcessingStatus(false);
     }
 
-    handleOK = (event) => {
+    /*handleOK = (event) => {
         console.log(event);
-    }
+    }*/
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -37,7 +37,6 @@ export default class InviteForm extends Component {
             return ;
         }
         this.setProcessingStatus(true);
-        console.log(name.value, email.value, confirmEmail.value);
         axios.post('/prod/fake-auth', {name: name.value, email: email.value}).then(() => {
             this.setValidationResult(FORM_STATUS.VALID);
         }).catch((err) => {
@@ -46,7 +45,6 @@ export default class InviteForm extends Component {
             //Sometimes the proxy cannot work properly, don't know why
             errorMessage = errorMessage? errorMessage : err.response.data;
             this.setState({errorMessage});
-            console.log(err);
         });
     }
 
@@ -66,10 +64,10 @@ export default class InviteForm extends Component {
                                         <hr className="w-10 border-dark" />
                                     </div>
                                     <div className="mb-3 py-3">
-                                        <h4 className="text-secondary">You will be the first to experience</h4>
-                                        <h4 className="text-secondary">Broccoli & Co. when we launch</h4>
+                                        <h5 className="text-secondary">You will be the first to experience</h5>
+                                        <h5 className="text-secondary">Broccoli & Co. when we launch</h5>
                                     </div>
-                                    <button type="button" onClick={this.handleOK} className="btn btn-success btn-lg btn-block">OK</button>
+                                    <button type="button" className="btn btn-success btn-lg btn-block mt-5" data-dismiss="modal">OK</button>
                                 </div>
                                 :<div>
                                     <div className="my-3 py-2">
@@ -92,9 +90,9 @@ export default class InviteForm extends Component {
                                             <div className="d-flex justify-content-center">
                                                 {
                                                     isProcessing ?
-                                                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary" disabled>Sending, please wait...</button>
+                                                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary btn-lg btn-block mt-5" disabled>Sending, please wait...</button>
                                                         :
-                                                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Send</button>
+                                                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary btn-lg btn-block mt-5">Send</button>
                                                 }
                                             </div>
                                             {

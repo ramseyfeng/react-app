@@ -1,7 +1,7 @@
 html,
 body,
 #root,.page {
-  height: 100%; /* needed for proper layout */
+  height: 100vh;
 }
 
 body {
@@ -34,7 +34,16 @@ p {
   width: 10%;
 }
 .content-xy-center {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  margin: auto;
+}
+/* It seems has little scroll issue when content height is realy small
+.content-xy-center {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+}*/
+
+
