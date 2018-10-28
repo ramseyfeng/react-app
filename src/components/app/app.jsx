@@ -16,7 +16,7 @@ export default class App extends Component {
                     </div>
                 </div>
                 <div className="page-content text-center py-3 d-flex">
-                    <div className="content-xy-center">
+                    <div className="m-auto p-3">
                         <h2 className="h2 mb-3 font-weight-normal">A better way</h2>
                         <h2 className="h2 mb-3 font-weight-normal">to enjoy every day</h2>
                         <p className="text-secondary">Be the first to know when we launch.</p>

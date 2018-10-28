@@ -3,47 +3,33 @@ body,
 #root,.page {
   height: 100vh;
 }
-
 body {
   overflow: hidden;
 }
-
 p {
   margin-bottom: 1em;
 }
-
 .page {
   display: flex;
   flex-direction: column;
 }
-
 .page-header {
   flex: 0 0 auto;
 }
-
 .page-content {
   flex: 1 1 auto;
-  position: relative;
+  justify-content: center;
+  align-items: center;
   overflow-y: auto;
 }
-
 .page-footer {
   flex: 0 0 auto;
 }
 .w-10 {
   width: 10%;
 }
-.content-xy-center {
-  width: 100%;
+/*.content-xy-center {
   max-width: 500px;
   padding: 15px;
   margin: auto;
-}
-/* It seems has little scroll issue when content height is realy small
-.content-xy-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }*/
-
-
